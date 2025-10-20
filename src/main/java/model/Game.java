@@ -18,7 +18,7 @@ public class Game {
     }
 
     public String getDetails() {
-        return String.format("ID: %d | %s | %s | %d | Qty: %d | $%.2f",
+        return String.format("ID: %d | %s | %s | %d | Qty: %d | £%.2f",
                 gameID, name, console, year, quantity, price);
     }
 
