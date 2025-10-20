@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import model.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
                 customer = new Customer(1, "Test Customer", "123 Test Street");
                 System.out.println("=== Test Setup Completed ===");
             }
-
+            @DisplayName("Test1")
             @Test
             void testCompleteInventoryManagement() {
                 System.out.println("\n RUNNING: testCompleteInventoryManagement()");
@@ -57,7 +58,7 @@ import java.util.List;
 
                 System.out.println(" TEST PASSED: testCompleteInventoryManagement()");
             }
-
+            @DisplayName("Test2")
             @Test
             void testStockLimitFunctionality() {
                 System.out.println("\n RUNNING: testStockLimitFunctionality()");
@@ -91,7 +92,7 @@ import java.util.List;
 
                 System.out.println(" TEST PASSED: testStockLimitFunctionality()");
             }
-
+            @DisplayName("Test3")
             @Test
             void testCustomerPurchaseSystem() {
                 System.out.println("\n RUNNING: testCustomerPurchaseSystem()");
@@ -124,7 +125,7 @@ import java.util.List;
 
                 System.out.println(" TEST PASSED: testCustomerPurchaseSystem()");
             }
-
+            @DisplayName("Test4")
             @Test
             void testTradeInAndDiscountSystem() {
                 System.out.println("\n RUNNING: testTradeInAndDiscountSystem()");
@@ -165,7 +166,7 @@ import java.util.List;
 
                 System.out.println(" TEST PASSED: testTradeInAndDiscountSystem()");
             }
-
+            @DisplayName("Test5")
             @Test
             void testGameSearchAndRetrieval() {
                 System.out.println("\n RUNNING: testGameSearchAndRetrieval()");
@@ -204,7 +205,7 @@ import java.util.List;
 
                 System.out.println(" TEST PASSED: testGameSearchAndRetrieval()");
             }
-
+            @DisplayName("Test6")
             @Test
             void testDuplicateGamePrevention() {
                 System.out.println("\n RUNNING: testDuplicateGamePrevention()");
@@ -229,7 +230,7 @@ import java.util.List;
 
                 System.out.println(" TEST PASSED: testDuplicateGamePrevention()");
             }
-
+            @DisplayName("Test7")
             @Test
             void testGameRemovalFunctionality() {
                 System.out.println("\n RUNNING: testGameRemovalFunctionality()");
@@ -261,7 +262,7 @@ import java.util.List;
 
                 System.out.println(" TEST PASSED: testGameRemovalFunctionality()");
             }
-
+            @DisplayName("Test8")
             @Test
             void testManagerInventoryOperations() {
                 System.out.println("\n RUNNING: testManagerInventoryOperations()");
@@ -290,7 +291,7 @@ import java.util.List;
 
                 System.out.println(" TEST PASSED: testManagerInventoryOperations()");
             }
-
+            @DisplayName("Test9")
             @Test
             void testCompleteBusinessWorkflow() {
                 System.out.println("\n RUNNING: testCompleteBusinessWorkflow()");
@@ -335,7 +336,7 @@ import java.util.List;
 
                 System.out.println(" TEST PASSED: testCompleteBusinessWorkflow()");
             }
-
+            @DisplayName("Test10")
             @Test
             void testMultipleCustomers() {
                 System.out.println("\n RUNNING: testMultipleCustomers()");
@@ -377,7 +378,7 @@ import java.util.List;
 
                 System.out.println(" TEST PASSED: testMultipleCustomers()");
             }
-
+            @DisplayName("Test11")
             @Test
             void testPurchaseWithInventoryUpdate() {
                 System.out.println("\n RUNNING: testPurchaseWithInventoryUpdate()");
