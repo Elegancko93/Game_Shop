@@ -1,4 +1,5 @@
-<img width="1000" height="400" alt="image" src="https://github.com/user-attachments/assets/5c87fe90-f1ba-4ec7-a479-1cae676e10a5" />
+<img width="1000" height="400" alt="image" src="https://github.com/user-attachments/assets/b15657dd-8dbc-4990-aebf-e57016df0f21" />
+
 
 # 🎮 GameShop
 
