@@ -18,7 +18,8 @@ GameShop demonstrates:
 
 ## 🧱 UML Diagram
 
-<img width="520" height="762" alt="image" src="https://github.com/user-attachments/assets/e83d35cf-c57d-4ec0-9880-9e5b20670af0" />
+<img width="538" height="770" alt="image" src="https://github.com/user-attachments/assets/b16cf53b-fa24-4b1c-a520-253fc101fc22" />
+
 
 
 ---
