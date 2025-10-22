@@ -29,7 +29,7 @@ public class Manager {
             }
         }
     }
-
+    // no use
     public Game displayGame(String name) {
         return inventory.getGame(name);
     }
