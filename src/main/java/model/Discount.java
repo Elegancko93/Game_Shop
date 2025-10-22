@@ -30,6 +30,11 @@ public class Discount {
     }
 
     // Getters
-    public double getDiscountRate() { return discountRate; }
-    public boolean isUsed() { return used; }
+    public double getDiscountRate() {
+        return discountRate;
+    }
+
+    public boolean isUsed() {
+        return used;
+    }
 }

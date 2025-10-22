@@ -11,5 +11,7 @@ public class Stock {
         return (currentQuantity + additionalQuantity) <= MAX_LIMIT;
     }
 
-    public static int getMaxLimit() { return MAX_LIMIT; }
+    public static int getMaxLimit() {
+        return MAX_LIMIT;
+    }
 }

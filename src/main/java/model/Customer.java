@@ -34,8 +34,19 @@ public class Customer {
     }
 
     // Getters and setters
-    public int getCustomerID() { return customerID; }
-    public String getName() { return name; }
-    public boolean isDiscountAvailable() { return discountAvailable; }
-    public void setDiscountAvailable(boolean discountAvailable) { this.discountAvailable = discountAvailable; }
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isDiscountAvailable() {
+        return discountAvailable;
+    }
+
+    public void setDiscountAvailable(boolean discountAvailable) {
+        this.discountAvailable = discountAvailable;
+    }
 }

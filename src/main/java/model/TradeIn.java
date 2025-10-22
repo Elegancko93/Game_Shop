@@ -26,6 +26,11 @@ public class TradeIn {
     }
 
     // Getters
-    public Game getTradedGame() { return tradedGame; }
-    public Customer getCustomer() { return customer; }
+    public Game getTradedGame() {
+        return tradedGame;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
 }

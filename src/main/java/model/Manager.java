@@ -31,5 +31,7 @@ public class Manager {
     }
 
     // Getters
-    public Inventory getInventory() { return inventory; }
+    public Inventory getInventory() {
+        return inventory;
+    }
 }

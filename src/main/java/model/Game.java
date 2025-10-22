@@ -27,11 +27,31 @@ public class Game {
     }
 
     // Getters and setters
-    public int getGameID() { return gameID; }
-    public String getName() { return name; }
-    public String getConsole() { return console; }
-    public int getYear() { return year; }
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
-    public double getPrice() { return price; }
+    public int getGameID() {
+        return gameID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getConsole() {
+        return console;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }

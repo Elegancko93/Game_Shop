@@ -25,6 +25,11 @@ public class Purchase {
     }
 
     // Getters
-    public Game getPurchasedGame() { return purchasedGame; }
-    public Customer getCustomer() { return customer; }
+    public Game getPurchasedGame() {
+        return purchasedGame;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
 }

@@ -53,6 +53,11 @@ public class Inventory {
     }
 
     // Getters
-    public List<Game> getGames() { return games; }
-    public int getInventoryID() { return inventoryID; }
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public int getInventoryID() {
+        return inventoryID;
+    }
 }
