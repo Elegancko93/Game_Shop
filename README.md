@@ -12,7 +12,7 @@ A simple object-oriented project simulating a **video game store** — managing 
 GameShop demonstrates:
 - Object-oriented programming (OOP) design
 - UML-based structure
-- Basic store operations like buying, trading, and managing stock
+- Main Classes
 
 ---
 
