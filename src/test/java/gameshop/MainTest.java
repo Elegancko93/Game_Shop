@@ -18,8 +18,8 @@ import java.util.List;
             @BeforeEach
             void setUp() {
                 inventory = new Inventory(1);
-                manager = new Manager(1, "Test Manager", inventory);
-                customer = new Customer(1, "Test Customer", "123 Test Street");
+                manager = new Manager(1, "Marek","Cudak","35 Hill Street", inventory);
+                customer = new Customer(1, "Daniel", "Virlan","35 Long Street");
                 System.out.println("=== Test Setup Completed ===");
             }
             @DisplayName("Test1")
@@ -342,8 +342,8 @@ import java.util.List;
                 System.out.println("\n RUNNING: testMultipleCustomers()");
 
                 // Test that different customers have separate data
-                Customer customer1 = new Customer(1, "Customer One", "Address One");
-                Customer customer2 = new Customer(2, "Customer Two", "Address Two");
+                Customer customer1 = new Customer(1, "Daniel", "Virlan","35 Hill Street");
+                Customer customer2 = new Customer(2, "Roksana", "Blazejczyk","346 Bell Street");
                 System.out.println(" Created 2 separate customers");
 
                 Game game = new Game(0, "Shared Game", "PC", 2023, 10, 39.99);

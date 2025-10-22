@@ -3,11 +3,15 @@ package model;
 public class Manager {
     private int managerID;
     private String name;
+    private String surname;
+    private String address;
     private Inventory inventory;
 
-    public Manager(int managerID, String name, Inventory inventory) {
+    public Manager(int managerID, String name, String surname, String address, Inventory inventory) {
         this.managerID = managerID;
         this.name = name;
+        this.surname = surname;
+        this.address = address;
         this.inventory = inventory;
     }
 
@@ -31,7 +35,15 @@ public class Manager {
     }
 
     // Getters
-    public Inventory getInventory() {
-        return inventory;
+    public int getManagerID() { return managerID; }
+    public String getName() { return name; }
+    public String getSurname() { return surname; }
+    public String getAddress() { return address; }
+    public Inventory getInventory() { return inventory; }
+
+    // Display manager info
+    public String getManagerInfo() {
+        return String.format("Manager ID: %d | Name: %s %s | Address: %s",
+                managerID, name, surname, address);
     }
 }

@@ -2,7 +2,6 @@ package gameshop;
 
 
 import model.*;
-
 import java.util.Scanner;
 import java.util.List;
 
@@ -11,14 +10,49 @@ public class GameShopService {
     private Manager manager;
     private Customer currentCustomer;
 
-    public GameShopService(Manager manager) {
+    public GameShopService() {
         this.scanner = new Scanner(System.in);
-        this.manager = manager;
-        this.currentCustomer = new Customer(1, "Default Customer", "123 Main St");
+        setupManager();
+        setupCustomer();
+    }
+
+    private void setupManager() {
+        System.out.println("=== MANAGER SETUP ===");
+        System.out.print("Enter manager name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter manager surname: ");
+        String surname = scanner.nextLine();
+
+        System.out.print("Enter manager address: ");
+        String address = scanner.nextLine();
+
+        Inventory inventory = new Inventory(1);
+        this.manager = new Manager(1, name, surname, address, inventory);
+
+        System.out.println(" Manager registered: " + manager.getManagerInfo());
+    }
+
+    private void setupCustomer() {
+        System.out.println("\n=== CUSTOMER REGISTRATION ===");
+        System.out.print("Enter customer name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter customer surname: ");
+        String surname = scanner.nextLine();
+
+        System.out.print("Enter customer address: ");
+        String address = scanner.nextLine();
+
+        this.currentCustomer = new Customer(1, name, surname, address);
+
+        System.out.println(" Customer registered: " + currentCustomer.getCustomerInfo());
     }
 
     public void start() {
-        System.out.println("=== Welcome to Game Shop Management System ===");
+        System.out.println("\n=== Welcome to Game Shop Management System ===");
+        System.out.println("Manager: " + manager.getName() + " " + manager.getSurname());
+        System.out.println("Customer: " + currentCustomer.getName() + " " + currentCustomer.getSurname());
 
         while (true) {
             displayMainMenu();
@@ -41,7 +75,14 @@ public class GameShopService {
                     viewCustomerInfo();
                     break;
                 case 6:
+                    viewManagerInfo();
+                    break;
+                case 7:
+                    searchGamesByPlatform();
+                    break;
+                case 8:
                     System.out.println("Thank you for using Game Shop Management System!");
+                    scanner.close();
                     return;
                 default:
                     System.out.println("Invalid option! Please try again.");
@@ -56,7 +97,29 @@ public class GameShopService {
         System.out.println("3. Trade-in Game");
         System.out.println("4. View Inventory");
         System.out.println("5. View Customer Info");
-        System.out.println("6. Exit");
+        System.out.println("6. View Manager Info");
+        System.out.println("7. Search Games by Platform");
+        System.out.println("8. Exit");
+    }
+
+    private void viewManagerInfo() {
+        System.out.println("\n=== MANAGER INFORMATION ===");
+        System.out.println(manager.getManagerInfo());
+    }
+
+    private void viewCustomerInfo() {
+        System.out.println("\n=== CUSTOMER INFORMATION ===");
+        System.out.println(currentCustomer.getCustomerInfo());
+
+        List<Purchase> history = currentCustomer.getHistory();
+        if (history.isEmpty()) {
+            System.out.println("No purchase history.");
+        } else {
+            System.out.println("Purchase History:");
+            for (Purchase purchase : history) {
+                System.out.println(" - " + purchase.getPurchaseDetails());
+            }
+        }
     }
 
     private void manageInventory() {
@@ -93,8 +156,8 @@ public class GameShopService {
         System.out.print("Enter game name: ");
         String name = scanner.nextLine();
 
-        System.out.print("Enter Platform: ");
-        String console = scanner.nextLine();
+        String platform = selectPlatform();
+        if (platform == null) return;
 
         int year = getIntInput("Enter release year: ");
         int quantity = getIntInput("Enter quantity: ");
@@ -105,11 +168,11 @@ public class GameShopService {
             return;
         }
 
-        Game newGame = new Game(0, name, console, year, quantity, price);
+        Game newGame = new Game(0, name, platform, year, quantity, price);
         if (manager.getInventory().addGame(newGame)) {
             System.out.println("Game added successfully!");
         } else {
-            System.out.println("Error: Game with same name and console already exists!");
+            System.out.println("Error: Game with same name and platform already exists!");
         }
     }
 
@@ -171,6 +234,7 @@ public class GameShopService {
             return;
         }
 
+        System.out.println("Selected: " + game.getDetails());
         double finalPrice = game.getPrice();
 
         // Apply discount if available
@@ -205,13 +269,13 @@ public class GameShopService {
         System.out.print("Enter game name for trade-in: ");
         String name = scanner.nextLine();
 
-        System.out.print("Enter console: ");
-        String console = scanner.nextLine();
+        String platform = selectPlatform();
+        if (platform == null) return;
 
         int year = getIntInput("Enter release year: ");
         double estimatedValue = getDoubleInput("Enter estimated value: ");
 
-        Game tradeInGame = new Game(0, name, console, year, 1, estimatedValue);
+        Game tradeInGame = new Game(0, name, platform, year, 1, estimatedValue);
         TradeIn tradeIn = currentCustomer.tradeIn(tradeInGame);
         tradeIn.processTradeIn();
 
@@ -222,19 +286,48 @@ public class GameShopService {
         manager.displayInventory();
     }
 
-    private void viewCustomerInfo() {
-        System.out.println("\n=== CUSTOMER INFORMATION ===");
-        System.out.println("Name: " + currentCustomer.getName());
-        System.out.println("Discount Available: " + (currentCustomer.isDiscountAvailable() ? "Yes" : "No"));
+    private void searchGamesByPlatform() {
+        System.out.println("\n=== SEARCH GAMES BY PLATFORM ===");
+        String platform = selectPlatform();
+        if (platform == null) return;
 
-        List<Purchase> history = currentCustomer.getHistory();
-        if (history.isEmpty()) {
-            System.out.println("No purchase history.");
+        List<Game> allGames = manager.getInventory().getGames();
+        List<Game> platformGames = allGames.stream()
+                .filter(game -> game.getConsole().equalsIgnoreCase(platform))
+                .toList();
+
+        if (platformGames.isEmpty()) {
+            System.out.println("No games found for platform: " + platform);
         } else {
-            System.out.println("Purchase History:");
-            for (Purchase purchase : history) {
-                System.out.println(" - " + purchase.getPurchaseDetails());
+            System.out.println("\nGames for " + platform + ":");
+            for (Game game : platformGames) {
+                System.out.println(" - " + game.getDetails());
             }
+        }
+    }
+
+    private String selectPlatform() {
+        String[] PLATFORMS = {
+                "PC", "PlayStation 5", "PlayStation 4", "Xbox Series X",
+                "Xbox One", "Nintendo Switch", "Nintendo 3DS", "Mobile"
+        };
+
+        System.out.println("\nAvailable Platforms:");
+        for (int i = 0; i < PLATFORMS.length; i++) {
+            System.out.println((i + 1) + ". " + PLATFORMS[i]);
+        }
+        System.out.println((PLATFORMS.length + 1) + ". Other (enter custom platform)");
+
+        int choice = getIntInput("Select platform: ");
+
+        if (choice >= 1 && choice <= PLATFORMS.length) {
+            return PLATFORMS[choice - 1];
+        } else if (choice == PLATFORMS.length + 1) {
+            System.out.print("Enter custom platform: ");
+            return scanner.nextLine();
+        } else {
+            System.out.println("Invalid platform selection!");
+            return null;
         }
     }
 
